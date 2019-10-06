@@ -15,3 +15,8 @@ def test_virus_instantiation():
     assert virus.name == "HIV"
     assert virus.repro_rate == 0.8
     assert virus.mortality_rate == 0.3
+
+    virus = Virus("Chicken Pox", 8.5, 0)
+    assert virus.name == "Chicken Pox"
+    assert virus.repro_rate == 8.5
+    assert virus.mortality_rate == 0    
