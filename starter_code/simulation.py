@@ -167,7 +167,26 @@ class Simulation(object):
             3. Otherwise call simulation.interaction(person, random_person) and
                 increment interaction counter by 1.
         """
+        sick_list = []
+        for person in self.population:
+            if person.infection == self.virus & person.is_alive == True:
+                sick_list.append(person)
 
+        for person in sick_list:
+            counter = 0
+            while counter < 100:
+                random = random.choice(self.population)
+
+                while random.is_alive == False:
+                    random = random.choice(self.population)
+
+                self.interaction(person,random)
+                counter += 1                
+
+        for person in sick_list:
+            person.did_survive_infection()
+
+        self._infect_newly_infected()
         # TODO: Finish this method.
         pass
 
@@ -202,7 +221,15 @@ class Simulation(object):
         #     Simulation object's newly_infected array, so that their .infected
         #     attribute can be changed to True at the end of the time step.
         # TODO: Call slogger method during this method.
-        pass
+
+        if random_person.is_vaccinated:
+            pass
+        elif random_person.infection == self.virus:
+            pass
+        else:
+            if random.random() < self.virus.repro_rate:
+                self.newly_infected.append(random_person)
+        
 
     def _infect_newly_infected(self): #Chudier
         """
@@ -210,7 +237,10 @@ class Simulation(object):
         self.newly_infected
         and update each Person object with the disease.
         """
+        for person in self.newly_infected:
+            person.infection = self.virus
 
+        self.newly_infected.clear()
         # TODO: Call this method at the end of every time step and infect each
         # Person.
         # TODO: Once you have iterated through the entire list of
