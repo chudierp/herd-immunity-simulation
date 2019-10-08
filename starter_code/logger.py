@@ -1,19 +1,24 @@
 class Logger(object):
     """Utility class to log all interactions during the simulation."""
-
+    
     # TODO: Write a test suite for this class to make sure each method is
     # working
     # as expected.
 
+    def test_cases(self):
+        # self.write_metadata()
+        # self.log_interaction()
+
     # PROTIP: Write your tests before you solve each function, that way you can
     # test them one by one as you write your class.
+        pass
 
     def __init__(self, file_name):
         """Initialize starting values"""
         # TODO:  Finish this initialization method. The file_name passed should
         # be the
         # full file name of the file that the logs will be written to.
-        self.file_name = None
+        # self.file_name = None
 
     def write_metadata(self, pop_size, vacc_percentage,
                        virus_name, mortality_rate, basic_repro_num):
